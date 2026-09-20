@@ -1,7 +1,10 @@
-const CACHE='flappy-v6';
+const CACHE='flappy-v8';
 const CORE=[
   './','./index.html','./game.css','./game.js','./manifest.webmanifest',
   './logo.png','./bird-up.png','./bird-mid.png','./bird-down.png',
+  './bird-berry-up.png','./bird-berry-mid.png','./bird-berry-down.png',
+  './bird-aqua-up.png','./bird-aqua-mid.png','./bird-aqua-down.png',
+  './bird-ember-up.png','./bird-ember-mid.png','./bird-ember-down.png',
   './icon-180.png','./icon-192.png','./icon-512.png','./icon-maskable-512.png'
 ];
 self.addEventListener('install',event=>{
