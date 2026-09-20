@@ -1,4 +1,4 @@
-const CACHE='flappy-v4';
+const CACHE='flappy-v6';
 const CORE=[
   './','./index.html','./game.css','./game.js','./manifest.webmanifest',
   './logo.png','./bird-up.png','./bird-mid.png','./bird-down.png',
