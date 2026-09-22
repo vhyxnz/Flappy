@@ -88,7 +88,9 @@ $('#cheatApply').onclick=applyCheat;$('#cheatInput').onkeydown=e=>{if(e.key==='E
 addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e;$('#installBtn').classList.remove('hidden')});
 $('#installBtn').onclick=async()=>{if(!installPrompt)return;installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;$('#installBtn').classList.add('hidden')};
 addEventListener('appinstalled',()=>{$('#installBtn').classList.add('hidden');installPrompt=null});
-canvas.addEventListener('pointerdown',e=>{e.preventDefault();flap()},{passive:false});$('#gameover').addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;start(mode)});
+function gameplayPointer(e){if(state!=='playing')return;const target=e.target;if(target instanceof Element&&target.closest('button,input,label,a,[role="button"]'))return;if(e.cancelable)e.preventDefault();flap()}
+if('PointerEvent' in window)document.addEventListener('pointerdown',gameplayPointer,{capture:true,passive:false});else document.addEventListener('touchstart',gameplayPointer,{capture:true,passive:false});
+$('#gameover').addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;start(mode)});
 addEventListener('keydown',e=>{if(['Space','ArrowUp'].includes(e.code)){e.preventDefault();if(state==='playing')flap();else if(state==='gameover')start(mode)}if(e.code==='KeyP'||e.code==='Escape'){if(state==='playing')pause();else if(state==='paused')resume()}});addEventListener('blur',()=>{if(state==='playing')pause()});
 if('serviceWorker' in navigator)addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
 resize();unlockEarned();renderHome();show('menu');last=performance.now();raf=requestAnimationFrame(loop);
